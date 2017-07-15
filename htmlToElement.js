@@ -127,14 +127,13 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
         }
 
         const {NodeComponent, styles} = opts;
-        const tagStyle = typeof styles[node.name] === 'object' ? styles[node.name] : null;
 
         return (
           <NodeComponent
             {...opts.nodeComponentProps}
             key={index}
             onPress={linkPressHandler}
-            style={tagStyle}
+            style={!node.parent ? styles[node.name] : null}
           >
             {linebreakBefore}
             {listItemPrefix}
